@@ -9,16 +9,16 @@ trigger:
 #       operatingSystem: 'ubuntu-latest'
 #     mac:
 #       operatingSystem: 'macos-latest'
+
 pool:
   vmImage: 'ubuntu-latest'
 
 stages:
 - stage: Build
   jobs:
-  - job : BuildsJob
+  - job: BuildJob
     steps:
-     - bash: echo "Do the build"
-
+    - bash: echo "Do the build"
 - stage: DevDeploy
   jobs:
   - deployment: DevDeployJob
@@ -28,16 +28,15 @@ stages:
         deploy:
           steps:
           - script: echo deploy to Dev
-          
-- stage: QaDeploy
+- stage: QADeploy
   jobs:
-  - deployment: QaDeployJob
-    environment: Qa
+  - deployment: QADeployJob
+    environment: QA
     strategy:
       runOnce:
         deploy:
           steps:
-          - script: echo deploy to Qa                     
+          - script: echo deploy to QA            
     
 
  
